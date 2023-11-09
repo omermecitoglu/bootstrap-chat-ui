@@ -1,0 +1,38 @@
+{
+  "private": true,
+  "name": "ts-react-storybook-template",
+  "version": "1.0.0",
+  "description": "Typescript React Storybook Template",
+  "main": "index.js",
+  "scripts": {
+    "prebuild": "ts-unused-exports tsconfig.json --excludePathsFromReport='.storybook;.stories.ts'",
+    "dev": "storybook dev -p 6006",
+    "build": "storybook build -o build"
+  },
+  "dependencies": {
+    "react": "^18.2.0"
+  },
+  "devDependencies": {
+    "@babel/preset-env": "^7.23.2",
+    "@babel/preset-react": "^7.22.15",
+    "@babel/preset-typescript": "^7.23.2",
+    "@storybook/addon-essentials": "^7.5.3",
+    "@storybook/addon-interactions": "^7.5.3",
+    "@storybook/addon-links": "^7.5.3",
+    "@storybook/addon-themes": "^7.5.3",
+    "@storybook/blocks": "^7.5.3",
+    "@storybook/react": "^7.5.3",
+    "@storybook/react-webpack5": "^7.5.3",
+    "@storybook/testing-library": "^0.2.2",
+    "@types/react": "^18.2.37",
+    "@typescript-eslint/eslint-plugin": "^6.10.0",
+    "eslint": "^8.53.0",
+    "eslint-plugin-import": "^2.29.0",
+    "eslint-plugin-storybook": "^0.6.15",
+    "eslint-plugin-unused-imports": "^3.0.0",
+    "storybook": "^7.5.3",
+    "ts-unused-exports": "^10.0.1",
+    "typescript": "^5.2.2",
+    "webpack": "^5.89.0"
+  }
+}
