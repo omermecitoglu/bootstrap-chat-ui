@@ -1,0 +1,32 @@
+.cool-scrollbar {
+  scrollbar-gutter: stable both-edges;
+
+  &::-webkit-scrollbar {
+    position: fixed;
+    width: 4px;
+  }
+
+  &::-webkit-scrollbar-track {
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    opacity: 0.1;
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+
+    // for light theme
+    background-color: rgba(0, 0, 0, 0.5);
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.5);
+  }
+}
+
+html[data-bs-theme="dark"] {
+  & .cool-scrollbar {
+    &::-webkit-scrollbar-thumb {
+      background-color: rgba(255, 255, 255, 0.5) !important;
+      -webkit-box-shadow: inset 0 0 6px rgba(255, 255, 255, 0.5) !important;
+    }
+  }
+}
