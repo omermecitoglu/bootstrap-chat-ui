@@ -5,7 +5,7 @@
   "description": "a Chat UI made with Bootstrap 5 and Font Awesome 6",
   "main": "index.js",
   "scripts": {
-    "prebuild": "ts-unused-exports tsconfig.json --excludePathsFromReport='.storybook;.stories.ts'",
+    "prebuild": "ts-unused-exports tsconfig.json --excludePathsFromReport='.storybook;.stories.ts;example.ts'",
     "dev": "storybook dev -p 6006",
     "build": "storybook build -o build"
   },
