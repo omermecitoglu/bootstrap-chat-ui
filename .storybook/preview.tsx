@@ -1,5 +1,7 @@
 import "../src/styles/custom-bootstrap.scss";
 import { withThemeByDataAttribute } from "@storybook/addon-themes";
+import React from "react";
+import Container from "react-bootstrap/Container";
 import type { Preview } from "@storybook/react";
 
 const preview: Preview = {
@@ -95,6 +97,11 @@ const preview: Preview = {
       defaultTheme: "light",
       attributeName: "data-bs-theme",
     }),
+    (Story) => (
+      <Container className="py-3 vh-100">
+        <Story />
+      </Container>
+    ),
   ],
 };
 
