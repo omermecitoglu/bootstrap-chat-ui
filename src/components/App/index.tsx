@@ -1,8 +1,9 @@
 import React from "react";
+import Container from "react-bootstrap/Container";
 
 const App = () => {
   return (
-    <div className="myapp">Typescript React Storybook Template</div>
+    <Container>Bootstrap</Container>
   );
 };
 

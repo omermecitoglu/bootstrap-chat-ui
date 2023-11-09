@@ -1,3 +1,4 @@
+import "../src/styles/custom-bootstrap.scss";
 import { withThemeByDataAttribute } from "@storybook/addon-themes";
 import type { Preview } from "@storybook/react";
 
