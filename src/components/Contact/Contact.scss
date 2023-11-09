@@ -1,0 +1,17 @@
+.contact {
+  cursor: pointer;
+
+  &:hover {
+    border-color: rgba(var(--bs-success-rgb), 1) !important;
+  }
+
+  & > div {
+    padding: 0.5rem;
+  }
+
+  &__time {
+    position: absolute;
+    top: 2px;
+    right: 4px;
+  }
+}

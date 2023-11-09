@@ -1,0 +1,58 @@
+.message {
+  position: relative;
+  border: none;
+
+  & p {
+    min-width: 2rem;
+  }
+
+  &__author {
+    position: absolute;
+    top: 1rem;
+    left: -1.5rem;
+    z-index: 2;
+  }
+
+  &__time {
+    position: absolute;
+    bottom: 2px;
+    right: 4px;
+    z-index: 1;
+  }
+
+  &__status {
+    position: absolute;
+    bottom: -0.25rem;
+    right: 2.75rem;
+    z-index: 1;
+  }
+
+  &__tail {
+    width: 32px;
+    height: 32px;
+    position: absolute;
+    top: 0px;
+    
+    &--original {
+      right: -16px;
+
+      & > polygon {
+        fill: var(--bs-card-bg);
+      }
+    }
+    
+    &--stranger {
+      left: -16px;
+      
+      & > polygon {
+        fill: rgb(var(--bs-success-rgb));
+      }
+    }
+  }
+}
+
+/* html[data-bs-theme="dark"] {
+  & .message__tail--original > polygon {
+    fill: #000000 !important;
+  }
+} */
