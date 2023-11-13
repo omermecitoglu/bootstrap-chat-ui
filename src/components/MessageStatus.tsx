@@ -5,7 +5,7 @@ import classNames from "classnames";
 import React from "react";
 
 type MessageStatusProps = {
-  current: "new" | "created" | "delivered" | "read",
+  current: "dummy" | "new" | "created" | "delivered" | "read",
 };
 
 const MessageStatus = ({

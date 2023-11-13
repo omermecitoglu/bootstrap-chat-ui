@@ -1,4 +1,4 @@
-import { faFilePdf } from "@fortawesome/free-solid-svg-icons";
+import { faFilePdf } from "@fortawesome/free-solid-svg-icons/faFilePdf";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
 

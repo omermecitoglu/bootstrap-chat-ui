@@ -5,6 +5,7 @@ import Row from "react-bootstrap/Row";
 import ContactList from "~/components/ContactList";
 import InputSection from "~/components/InputSection";
 import MessageList from "~/components/MessageList";
+import ProfileSection from "~/components/ProfileSection";
 import ChatContext from "~/core/context";
 import { getLastMessages } from "~/core/message";
 import type { IMessage } from "~/types/message";
@@ -40,11 +41,16 @@ const Chat = ({
     <ChatContext.Provider value={{ getContactAvatar, getContactName, isContactOnline }}>
       <Row className="h-100 gx-2">
         <Col md={5} lg={4} xxl={3} className="h-100 d-none d-md-block">
-          <ContactList
-            lastMessages={lastMessages}
-            activeRoom={activeRoom}
-            activateRoom={onRoomChange}
-          />
+          <div className="h-100 d-flex flex-column">
+            <ProfileSection
+              onContactCreate={contactId => onMessageCreate(contactId, "", true)}
+            />
+            <ContactList
+              lastMessages={lastMessages}
+              activeRoom={activeRoom}
+              activateRoom={onRoomChange}
+            />
+          </div>
         </Col>
         <Col className="h-100">
           <div className="h-100 d-flex flex-column gap-3">
