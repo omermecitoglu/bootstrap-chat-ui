@@ -1,5 +1,5 @@
 import "~/styles/scrollbar.scss";
-import React, { useMemo, useState } from "react";
+import React, { useMemo } from "react";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import ContactList from "~/components/ContactList";
@@ -13,6 +13,8 @@ type ChatProps = {
   originUserId: string,
   allMessages: IMessage[],
   addMessage: (message: string, roomId: string) => void,
+  activeRoom: string | null,
+  onRoomChange: (roomId: string) => void,
   getContactAvatar: (contactId: string) => string,
   getContactName: (contactId: string) => string,
   isContactOnline: (contactId: string) => boolean,
@@ -22,12 +24,12 @@ const Chat = ({
   originUserId,
   allMessages,
   addMessage,
+  activeRoom,
+  onRoomChange,
   getContactAvatar,
   getContactName,
   isContactOnline,
 }: ChatProps) => {
-  const [activeRoom, setActiveRoom] = useState<string | null>(null);
-
   const lastMessages = useMemo(() => getLastMessages(allMessages), [allMessages]);
 
   const loadedMessages = useMemo(() => allMessages.filter(m => m.roomId === activeRoom), [allMessages, activeRoom]);
@@ -39,7 +41,7 @@ const Chat = ({
           <ContactList
             lastMessages={lastMessages}
             activeRoom={activeRoom}
-            activateRoom={setActiveRoom}
+            activateRoom={onRoomChange}
           />
         </Col>
         <Col className="h-100">

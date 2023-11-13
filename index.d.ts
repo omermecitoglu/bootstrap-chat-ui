@@ -10,6 +10,8 @@ export type ChatProps = {
   originUserId: string,
   allMessages: IMessage[],
   addMessage: (message: string, roomId: string) => void,
+  activeRoom: string | null,
+  onRoomChange: (roomId: string) => void,
   getContactAvatar: (contactId: string) => string,
   getContactName: (contactId: string) => string,
   isContactOnline: (contactId: string) => boolean,

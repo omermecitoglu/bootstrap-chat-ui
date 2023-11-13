@@ -18,6 +18,7 @@ const Template = ({
   isContactOnline,
 }: TemplateProps) => {
   const [messages, setMessages] = useState(initialMessages);
+  const [activeRoom, setActiveRoom] = useState<string | null>(null);
 
   const handleNewMessage = (message: string, roomId: string) => {
     const messageId = Date.now().toString();
@@ -52,6 +53,8 @@ const Template = ({
       originUserId={originUserId}
       allMessages={messages}
       addMessage={handleNewMessage}
+      activeRoom={activeRoom}
+      onRoomChange={setActiveRoom}
       getContactAvatar={getContactAvatar}
       getContactName={getContactName}
       isContactOnline={isContactOnline}
