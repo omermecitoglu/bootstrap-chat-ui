@@ -16,7 +16,7 @@ const ContactList = ({
   <div className="pe-3 h-100 overflow-y-scroll cool-scrollbar">
     {lastMessages.map(message =>
       <Contact
-        key={message.id}
+        key={message.roomId}
         lastMessage={message}
         active={activeRoom === message.roomId}
         activate={activateRoom}

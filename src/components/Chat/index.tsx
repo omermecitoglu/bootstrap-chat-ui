@@ -37,8 +37,10 @@ const Chat = ({
     return allMessages.filter(m => m.roomId === activeRoom && m.status !== "dummy");
   }, [allMessages, activeRoom]);
 
+  const contextValue = useMemo(() => ({ getContactAvatar, getContactName, isContactOnline }), []);
+
   return (
-    <ChatContext.Provider value={{ getContactAvatar, getContactName, isContactOnline }}>
+    <ChatContext.Provider value={contextValue}>
       <Row className="h-100 gx-2">
         <Col md={5} lg={4} xxl={3} className="h-100 d-none d-md-block">
           <div className="h-100 d-flex flex-column">
