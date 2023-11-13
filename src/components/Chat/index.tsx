@@ -15,6 +15,7 @@ type ChatProps = {
   addMessage: (message: string, roomId: string) => void,
   getContactAvatar: (contactId: string) => string,
   getContactName: (contactId: string) => string,
+  isContactOnline: (contactId: string) => boolean,
 };
 
 const Chat = ({
@@ -23,6 +24,7 @@ const Chat = ({
   addMessage,
   getContactAvatar,
   getContactName,
+  isContactOnline,
 }: ChatProps) => {
   const [activeRoom, setActiveRoom] = useState<string | null>(null);
 
@@ -31,7 +33,7 @@ const Chat = ({
   const loadedMessages = useMemo(() => allMessages.filter(m => m.roomId === activeRoom), [allMessages, activeRoom]);
 
   return (
-    <ChatContext.Provider value={{ getContactAvatar, getContactName }}>
+    <ChatContext.Provider value={{ getContactAvatar, getContactName, isContactOnline }}>
       <Row className="h-100 gx-2">
         <Col md={5} lg={4} xxl={3} className="h-100 d-none d-md-block">
           <ContactList

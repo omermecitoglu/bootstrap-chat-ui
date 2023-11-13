@@ -466,3 +466,14 @@ export function getContactName(contactId: string, defaultName: string) {
       return defaultName;
   }
 }
+
+export function isContactOnline(contactId: string) {
+  switch (contactId) {
+    // case einstein.id:
+    case newton.id:
+    case darwin.id:
+      return true;
+    default:
+      return false;
+  }
+}

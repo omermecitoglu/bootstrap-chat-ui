@@ -12,6 +12,7 @@ export type ChatProps = {
   addMessage: (message: string, roomId: string) => void,
   getContactAvatar: (contactId: string) => string,
   getContactName: (contactId: string) => string,
+  isContactOnline: (contactId: string) => boolean,
 };
 declare const BootstrapChatUI: (props: ChatProps) => React.JSX.Element;
 export default BootstrapChatUI;

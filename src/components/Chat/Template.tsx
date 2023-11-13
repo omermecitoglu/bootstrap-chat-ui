@@ -7,6 +7,7 @@ type TemplateProps = {
   initialMessages: IMessage[],
   getContactAvatar: (contactId: string) => string,
   getContactName: (contactId: string) => string,
+  isContactOnline: (contactId: string) => boolean,
 };
 
 const Template = ({
@@ -14,6 +15,7 @@ const Template = ({
   initialMessages,
   getContactAvatar,
   getContactName,
+  isContactOnline,
 }: TemplateProps) => {
   const [messages, setMessages] = useState(initialMessages);
 
@@ -52,6 +54,7 @@ const Template = ({
       addMessage={handleNewMessage}
       getContactAvatar={getContactAvatar}
       getContactName={getContactName}
+      isContactOnline={isContactOnline}
     />
   );
 };

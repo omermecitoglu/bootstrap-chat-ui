@@ -1,4 +1,4 @@
-import { exampleMessages, getContactAvatar, getContactName } from "~/example";
+import { exampleMessages, getContactAvatar, getContactName, isContactOnline } from "~/example";
 import Component from "./Template";
 import type { Meta, StoryObj } from "@storybook/react";
 
@@ -19,5 +19,6 @@ export const Template: Story = {
     initialMessages: exampleMessages,
     getContactAvatar,
     getContactName: id => getContactName(id, "Unknown"),
+    isContactOnline,
   },
 };

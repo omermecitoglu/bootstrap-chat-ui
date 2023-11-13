@@ -1,0 +1,19 @@
+.contact-avatar {
+  position: relative;
+  &__image {
+
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 100%;
+    object-fit: cover;
+    box-sizing: content-box;
+
+    &--online {
+      border: solid 0.25rem rgb(var(--bs-warning-rgb));
+    }
+  }
+}
