@@ -8,6 +8,7 @@ import ContactAvatar from "~/components/ContactAvatar";
 import MessageStatus from "~/components/MessageStatus";
 import MessageTime from "~/components/MessageTime";
 import type { IMessage } from "~/types/message";
+import MessageContent from "../MessageContent";
 
 interface MessageProps extends IMessage {
   original: boolean,
@@ -57,8 +58,8 @@ const Message = ({
           </svg>
         }
         <Card.Body>
-          <Card.Text>
-            {content}
+          <Card.Text className="message__content">
+            <MessageContent content={content} />
           </Card.Text>
         </Card.Body>
       </Card>

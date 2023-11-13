@@ -18,6 +18,11 @@ const Contact = ({
   activate,
 }: ContactProps) => {
   const { getContactName } = useContext(ChatContext);
+  const formattedContent = (content: string) => {
+    const match = content.match(/^data:(.*?);base64,/);
+    if (match && match[1]) return `File (${match[1]})`;
+    return content;
+  };
   return (
     <Card
       className="mb-3 contact"
@@ -38,7 +43,7 @@ const Contact = ({
             {getContactName(lastMessage.roomId)}
           </Card.Title>
           <Card.Text className="text-truncate">
-            {lastMessage.content}
+            {formattedContent(lastMessage.content)}
           </Card.Text>
         </div>
       </div>

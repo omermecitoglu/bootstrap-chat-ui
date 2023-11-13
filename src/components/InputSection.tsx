@@ -3,6 +3,7 @@ import { faPaperclip } from "@fortawesome/free-solid-svg-icons/faPaperclip";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useRef, useState } from "react";
 import Button from "react-bootstrap/Button";
+import { convertFileToBase64 } from "~/core/base64";
 import ResizableInputBox from "./ResizableInputBox";
 
 type InputSectionProps = {
@@ -25,11 +26,20 @@ const InputSection = ({
   const handleKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
     if (e.key === "Enter") {
       e.preventDefault();
-      if (e.ctrlKey) {
+      if (e.ctrlKey || e.shiftKey) {
         setInputText(text => text + "\n");
       } else {
         submitText();
       }
+    }
+  };
+
+  const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (!e.target.files) return;
+    const files = Array.from(e.target.files);
+    for (const file of files) {
+      const base64 = await convertFileToBase64(file);
+      submit(base64);
     }
   };
 
@@ -45,7 +55,14 @@ const InputSection = ({
           <FontAwesomeIcon icon={faPaperPlane} size="lg" className="fa-fw" />
         </Button>
         <Button variant="secondary" onClick={() => fileInput.current?.click()}>
-          <input ref={fileInput} type="file" className="d-none" multiple accept="image/*" />
+          <input
+            ref={fileInput}
+            type="file"
+            className="d-none"
+            multiple
+            accept="image/*,application/pdf"
+            onChange={handleFileChange}
+          />
           <FontAwesomeIcon icon={faPaperclip} size="lg" className="fa-fw" />
         </Button>
       </div>
