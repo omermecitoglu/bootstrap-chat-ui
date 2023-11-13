@@ -12,7 +12,7 @@ import type { IMessage } from "~/types/message";
 type ChatProps = {
   originUserId: string,
   allMessages: IMessage[],
-  addMessage: (message: string, roomId: string) => void,
+  onMessageCreate: (roomId: string, content: string, isDummy: boolean) => void,
   activeRoom: string | null,
   onRoomChange: (roomId: string) => void,
   getContactAvatar: (contactId: string) => string,
@@ -23,7 +23,7 @@ type ChatProps = {
 const Chat = ({
   originUserId,
   allMessages,
-  addMessage,
+  onMessageCreate,
   activeRoom,
   onRoomChange,
   getContactAvatar,
@@ -32,7 +32,9 @@ const Chat = ({
 }: ChatProps) => {
   const lastMessages = useMemo(() => getLastMessages(allMessages), [allMessages]);
 
-  const loadedMessages = useMemo(() => allMessages.filter(m => m.roomId === activeRoom), [allMessages, activeRoom]);
+  const loadedMessages = useMemo(() => {
+    return allMessages.filter(m => m.roomId === activeRoom && m.status !== "dummy");
+  }, [allMessages, activeRoom]);
 
   return (
     <ChatContext.Provider value={{ getContactAvatar, getContactName, isContactOnline }}>
@@ -50,7 +52,7 @@ const Chat = ({
               originUserId={originUserId}
               collection={loadedMessages}
             />
-            {activeRoom && <InputSection submit={message => addMessage(message, activeRoom)} />}
+            {activeRoom && <InputSection submit={message => onMessageCreate(activeRoom, message, false)} />}
           </div>
         </Col>
       </Row>

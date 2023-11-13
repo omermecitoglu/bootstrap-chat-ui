@@ -20,39 +20,41 @@ const Template = ({
   const [messages, setMessages] = useState(initialMessages);
   const [activeRoom, setActiveRoom] = useState<string | null>(null);
 
-  const handleNewMessage = (message: string, roomId: string) => {
+  const handleNewMessage = (roomId: string, content: string, isDummy: boolean) => {
     const messageId = Date.now().toString();
     setMessages(m => [...m, {
       id: messageId,
-      content: message,
+      content,
       roomId: roomId,
       authorId: originUserId,
       timestamp: Date.now(),
-      status: "created",
+      status: isDummy ? "dummy" : "created",
     }]);
-    setTimeout(() => {
-      setMessages(msgs => {
-        return msgs.map(msg => msg.id === messageId ? ({
-          ...msg,
-          status: "delivered",
-        }) : msg);
-      });
-    }, 3000);
-    setTimeout(() => {
-      setMessages(msgs => {
-        return msgs.map(msg => msg.id === messageId ? ({
-          ...msg,
-          status: "read",
-        }) : msg);
-      });
-    }, 6000);
+    if (!isDummy) {
+      setTimeout(() => {
+        setMessages(msgs => {
+          return msgs.map(msg => msg.id === messageId ? ({
+            ...msg,
+            status: "delivered",
+          }) : msg);
+        });
+      }, 3000);
+      setTimeout(() => {
+        setMessages(msgs => {
+          return msgs.map(msg => msg.id === messageId ? ({
+            ...msg,
+            status: "read",
+          }) : msg);
+        });
+      }, 6000);
+    }
   };
 
   return (
     <Chat
       originUserId={originUserId}
       allMessages={messages}
-      addMessage={handleNewMessage}
+      onMessageCreate={handleNewMessage}
       activeRoom={activeRoom}
       onRoomChange={setActiveRoom}
       getContactAvatar={getContactAvatar}

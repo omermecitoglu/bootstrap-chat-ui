@@ -9,7 +9,7 @@ export type IMessage = {
 export type ChatProps = {
   originUserId: string,
   allMessages: IMessage[],
-  addMessage: (message: string, roomId: string) => void,
+  onMessageCreate: (roomId: string, content: string, isDummy: boolean) => void,
   activeRoom: string | null,
   onRoomChange: (roomId: string) => void,
   getContactAvatar: (contactId: string) => string,

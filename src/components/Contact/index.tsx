@@ -18,7 +18,8 @@ const Contact = ({
   activate,
 }: ContactProps) => {
   const { getContactName } = useContext(ChatContext);
-  const formattedContent = (content: string) => {
+  const formattedContent = ({ status, content }: IMessage) => {
+    if (status === "dummy") return "\u00A0";
     const match = content.match(/^data:(.*?);base64,/);
     if (match && match[1]) return `File (${match[1]})`;
     return content;
@@ -43,7 +44,7 @@ const Contact = ({
             {getContactName(lastMessage.roomId)}
           </Card.Title>
           <Card.Text className="text-truncate">
-            {formattedContent(lastMessage.content)}
+            {formattedContent(lastMessage)}
           </Card.Text>
         </div>
       </div>
