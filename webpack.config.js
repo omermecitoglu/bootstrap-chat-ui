@@ -5,10 +5,14 @@ const autoprefixer = require("autoprefixer")
 const path = require("path");
 
 module.exports = (env, argv) => ({
-  entry: "./src/index.ts",
+  entry: "./src/components/Chat/index.tsx",
   output: {
     filename: "index.js",
     path: path.resolve(__dirname, "dist"),
+    library: {
+      name: "BootstrapChatUI",
+      type: "umd"
+    },
   },
   target: "web",
   plugins: [
