@@ -31,7 +31,11 @@ const Chat = ({
   getContactName,
   isContactOnline,
 }: ChatProps) => {
-  const lastMessages = useMemo(() => getLastMessages(allMessages), [allMessages]);
+  const lastMessages = useMemo(() => {
+    const messages = getLastMessages(allMessages);
+    messages.sort((a, b) => b.timestamp - a.timestamp);
+    return messages;
+  }, [allMessages]);
 
   const loadedMessages = useMemo(() => {
     return allMessages.filter(m => m.roomId === activeRoom && m.status !== "dummy");
