@@ -20,6 +20,28 @@ const MessageList = ({
   const [loading, setLoading] = useState(false);
   const scroller = useRef<HTMLDivElement>(null);
   const spinner = useRef<HTMLDivElement>(null);
+  const scrolled = useRef(false);
+
+  const lastUserMessage = collection.findLast(m => m.authorId === originUserId);
+  const lastMessage = collection.length ? collection[collection.length - 1] : undefined;
+
+  // always scroll to bottom when user sends message
+
+  useEffect(() => {
+    if (scroller.current) {
+      scroller.current.scrollTop = scroller.current.scrollHeight;
+    }
+  }, [lastUserMessage?.id]);
+
+  // if other people send message, scroll to bottom if only it's already scrolled.
+
+  useEffect(() => {
+    if (scroller.current && scrolled.current) {
+      scroller.current.scrollTop = scroller.current.scrollHeight;
+    }
+  }, [lastMessage?.id]);
+
+  // scroll to bottom when a new room is activated.
 
   useEffect(() => {
     if (!scroller.current) return;
@@ -28,11 +50,14 @@ const MessageList = ({
     setLoading(false);
   }, [roomId]);
 
+  // handle scroll events
+
   useEffect(() => {
     if (!roomId || !scroller.current) return;
     const div = scroller.current;
 
     const handleScroll = async () => {
+      scrolled.current = div.scrollTop >= div.scrollHeight - div.clientHeight;
       if (loading || !canLoadMessages(roomId)) return;
       if (div.scrollTop < 1) {
         const previousScrollHeight = div.scrollHeight;
