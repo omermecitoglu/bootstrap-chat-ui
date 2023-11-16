@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useRef, useState } from "react";
 import Button from "react-bootstrap/Button";
 import { convertFileToBase64 } from "~/core/base64";
+import acceptedMimeTypes from "~/core/mimetype";
 import ResizableInputBox from "./ResizableInputBox";
 
 type InputSectionProps = {
@@ -60,7 +61,7 @@ const InputSection = ({
             type="file"
             className="d-none"
             multiple
-            accept="image/*,application/pdf"
+            accept={acceptedMimeTypes()}
             onChange={handleFileChange}
           />
           <FontAwesomeIcon icon={faPaperclip} size="lg" className="fa-fw" />
