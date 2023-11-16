@@ -1,5 +1,5 @@
 import "~/styles/scrollbar.scss";
-import React, { useMemo } from "react";
+import React, { useMemo, useRef } from "react";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import ContactList from "~/components/ContactList";
@@ -9,6 +9,7 @@ import ProfileSection from "~/components/ProfileSection";
 import ChatContext from "~/core/context";
 import { getLastMessages } from "~/core/message";
 import type { IMessage } from "~/types/message";
+import DropZone from "../DropZone";
 
 type ChatProps = {
   originUserId: string,
@@ -35,6 +36,8 @@ const Chat = ({
   getContactName,
   isContactOnline,
 }: ChatProps) => {
+  const mainSection = useRef<HTMLDivElement>(null);
+
   const lastMessages = useMemo(() => {
     const messages = getLastMessages(allMessages);
     messages.sort((a, b) => b.timestamp - a.timestamp);
@@ -74,7 +77,13 @@ const Chat = ({
             />
           </div>
         </Col>
-        <Col className="h-100">
+        <Col ref={mainSection} className="h-100 position-relative">
+          {activeRoom && mainSection.current &&
+            <DropZone
+              container={mainSection.current}
+              submit={message => onMessageCreate(activeRoom, message, false)}
+            />
+          }
           <div className="h-100 d-flex flex-column gap-3">
             <MessageList
               originUserId={originUserId}

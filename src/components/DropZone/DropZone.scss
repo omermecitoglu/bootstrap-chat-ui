@@ -1,0 +1,27 @@
+.drop-zone {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 3;
+  background-color: gray;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  color: white;
+  text-shadow: 0.5rem 0.5rem 0.5rem rgba(0, 0, 0, 0.75);
+  font-weight: bold;
+  font-size: 2rem;
+
+  box-shadow: 0 0 2rem 1rem rgba(0, 0, 0, 0.75) inset;
+  -webkit-box-shadow: 0 0 2rem 1rem rgba(0, 0, 0, 0.75) inset;
+  -moz-box-shadow: 0 0 2rem 1rem rgba(0, 0, 0, 0.75) inset;
+
+  & * {
+    pointer-events: none;
+  }
+}
