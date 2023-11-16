@@ -4,7 +4,7 @@ export type IMessage = {
   roomId: string,
   authorId: string,
   timestamp: number,
-  status: "dummy" | "new" | "created" | "delivered" | "read",
+  status: "dummy" | "new" | "created" | "delivered" | "seen",
 };
 export type ChatProps = {
   originUserId: string,

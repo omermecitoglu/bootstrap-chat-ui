@@ -5,7 +5,7 @@ import classNames from "classnames";
 import React from "react";
 
 type MessageStatusProps = {
-  current: "dummy" | "new" | "created" | "delivered" | "read",
+  current: "dummy" | "new" | "created" | "delivered" | "seen",
 };
 
 const MessageStatus = ({
@@ -13,9 +13,9 @@ const MessageStatus = ({
 }: MessageStatusProps) => {
   return current === "new" ? null : (
     <FontAwesomeIcon
-      icon={["delivered", "read"].includes(current) ? faCheckDouble : faCheck}
+      icon={["delivered", "seen"].includes(current) ? faCheckDouble : faCheck}
       size="sm"
-      className={classNames("fa-fw", current === "read" ? "text-primary" : "text-secondary")}
+      className={classNames("fa-fw", current === "seen" ? "text-primary" : "text-secondary")}
     />
   );
 };

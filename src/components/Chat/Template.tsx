@@ -45,7 +45,7 @@ const Template = ({
         setMessages(msgs => {
           return msgs.map(msg => msg.id === messageId ? ({
             ...msg,
-            status: "read",
+            status: "seen",
           }) : msg);
         });
       }, 6000);
@@ -63,7 +63,7 @@ const Template = ({
       roomId,
       authorId: originUserId,
       timestamp: now - idx,
-      status: "read",
+      status: "seen",
     }));
     setMessages(msgs => [...moreMessages, ...msgs]);
   };

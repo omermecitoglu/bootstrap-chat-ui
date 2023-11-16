@@ -409,7 +409,7 @@ export const exampleMessages: IMessage[] = [
     roomId: einstein.id,
     authorId: einstein.id,
     timestamp: 1698647224874 + index * 5 * 60000,
-    status: "read",
+    status: "seen",
   })),
   ...newtonQuotes.map<IMessage>((message, index) => ({
     id: "message-from-newton-" + index,
@@ -417,7 +417,7 @@ export const exampleMessages: IMessage[] = [
     roomId: newton.id,
     authorId: newton.id,
     timestamp: 1698547224874 + index * 5 * 60000,
-    status: "read",
+    status: "seen",
   })),
   ...darwinQuotes.map<IMessage>((message, index) => ({
     id: "message-from-darwin-" + index,
@@ -425,7 +425,7 @@ export const exampleMessages: IMessage[] = [
     roomId: darwin.id,
     authorId: darwin.id,
     timestamp: 1698447224874 + index * 5 * 60000,
-    status: "read",
+    status: "seen",
   })),
   ...loremIpsumList.map<IMessage>((message, index) => ({
     id: "solvay-conference-message-" + index,
@@ -433,7 +433,7 @@ export const exampleMessages: IMessage[] = [
     roomId: solvay.id,
     authorId: (index % 5) % 2 === 0 ? einstein.id : "d51a780b-90ed-4a42-b6f1-df031f1411b5",
     timestamp: 1698647224874 + index * 5 * 60000,
-    status: "read",
+    status: "seen",
   })),
 ];
 
