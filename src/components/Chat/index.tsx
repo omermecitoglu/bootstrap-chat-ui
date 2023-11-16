@@ -16,6 +16,8 @@ type ChatProps = {
   onMessageCreate: (roomId: string, content: string, isDummy: boolean) => void,
   activeRoom: string | null,
   onRoomChange: (roomId: string) => void,
+  canLoadMessages: (roomId: string) => boolean,
+  loadMessages: (roomId: string) => Promise<void>,
   getContactAvatar: (contactId: string) => string,
   getContactName: (contactId: string) => string,
   isContactOnline: (contactId: string) => boolean,
@@ -27,6 +29,8 @@ const Chat = ({
   onMessageCreate,
   activeRoom,
   onRoomChange,
+  canLoadMessages,
+  loadMessages,
   getContactAvatar,
   getContactName,
   isContactOnline,
@@ -41,7 +45,19 @@ const Chat = ({
     return allMessages.filter(m => m.roomId === activeRoom && m.status !== "dummy");
   }, [allMessages, activeRoom]);
 
-  const contextValue = useMemo(() => ({ getContactAvatar, getContactName, isContactOnline }), []);
+  const contextValue = useMemo(() => ({
+    canLoadMessages,
+    loadMessages,
+    getContactAvatar,
+    getContactName,
+    isContactOnline,
+  }), [
+    canLoadMessages,
+    loadMessages,
+    getContactAvatar,
+    getContactName,
+    isContactOnline,
+  ]);
 
   return (
     <ChatContext.Provider value={contextValue}>
@@ -62,6 +78,7 @@ const Chat = ({
           <div className="h-100 d-flex flex-column gap-3">
             <MessageList
               originUserId={originUserId}
+              roomId={activeRoom}
               collection={loadedMessages}
             />
             {activeRoom && <InputSection submit={message => onMessageCreate(activeRoom, message, false)} />}

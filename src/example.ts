@@ -477,3 +477,7 @@ export function isContactOnline(contactId: string) {
       return false;
   }
 }
+
+export function canLoadMessages(roomId: string) {
+  return roomId === solvay.id;
+}

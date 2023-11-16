@@ -1,4 +1,4 @@
-import { exampleMessages, getContactAvatar, getContactName, isContactOnline } from "~/example";
+import { canLoadMessages, exampleMessages, getContactAvatar, getContactName, isContactOnline } from "~/example";
 import Component from "./Template";
 import type { Meta, StoryObj } from "@storybook/react";
 
@@ -17,6 +17,7 @@ export const Template: Story = {
   args: {
     originUserId: "d51a780b-90ed-4a42-b6f1-df031f1411b5",
     initialMessages: exampleMessages,
+    canLoadMessages,
     getContactAvatar,
     getContactName: id => getContactName(id, "Unknown"),
     isContactOnline,

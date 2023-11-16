@@ -5,6 +5,7 @@ import Chat from ".";
 type TemplateProps = {
   originUserId: string,
   initialMessages: IMessage[],
+  canLoadMessages: (roomId: string) => boolean,
   getContactAvatar: (contactId: string) => string,
   getContactName: (contactId: string) => string,
   isContactOnline: (contactId: string) => boolean,
@@ -13,6 +14,7 @@ type TemplateProps = {
 const Template = ({
   originUserId,
   initialMessages,
+  canLoadMessages,
   getContactAvatar,
   getContactName,
   isContactOnline,
@@ -50,6 +52,22 @@ const Template = ({
     }
   };
 
+  const sleep = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
+
+  const loadMoreMessages = async (roomId: string): Promise<void> => {
+    const now = Date.now();
+    await sleep(1000);
+    const moreMessages = Array(10).fill(null).map<IMessage>((n, idx) => ({
+      id: (now - idx).toString(),
+      content: "loaded message " + idx,
+      roomId,
+      authorId: originUserId,
+      timestamp: now - idx,
+      status: "read",
+    }));
+    setMessages(msgs => [...moreMessages, ...msgs]);
+  };
+
   return (
     <Chat
       originUserId={originUserId}
@@ -57,6 +75,8 @@ const Template = ({
       onMessageCreate={handleNewMessage}
       activeRoom={activeRoom}
       onRoomChange={setActiveRoom}
+      canLoadMessages={canLoadMessages}
+      loadMessages={loadMoreMessages}
       getContactAvatar={getContactAvatar}
       getContactName={getContactName}
       isContactOnline={isContactOnline}
