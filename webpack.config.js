@@ -66,6 +66,8 @@ module.exports = (env, argv) => ({
     "classnames",
     /^@fortawesome\/react-fontawesome$/,
     /^@fortawesome\/free-solid-svg-icons\/\w+$/,
+    "textarea-caret",
+    "unicode-emoji-json",
   ],
   externalsType: "commonjs",
   devServer: {
@@ -75,8 +77,8 @@ module.exports = (env, argv) => ({
     compress: true,
     port: 3000,
   },
-  /* performance: {
-    maxAssetSize: 1 * 1024 * 1024,     // 1 MB in bytes
-    maxEntrypointSize: 2 * 1024 * 1024, // 2 MB in bytes
-  }, */
+  performance: {
+    maxAssetSize: 35 * 1024,      // 35 KB in bytes
+    maxEntrypointSize: 40 * 1024, // 40 KB in bytes
+  },
 });

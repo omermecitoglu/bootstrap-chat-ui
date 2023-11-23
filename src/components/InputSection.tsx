@@ -24,14 +24,11 @@ const InputSection = ({
     }
   };
 
-  const handleKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
-    if (e.key === "Enter") {
-      e.preventDefault();
-      if (e.ctrlKey || e.shiftKey) {
-        setInputText(text => text + "\n");
-      } else {
-        submitText();
-      }
+  const onEnter = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
+    if (e.ctrlKey || e.shiftKey) {
+      setInputText(text => text + "\n");
+    } else {
+      submitText();
     }
   };
 
@@ -50,7 +47,7 @@ const InputSection = ({
         <ResizableInputBox
           value={inputText}
           onChange={setInputText}
-          onKeyDown={handleKeyDown}
+          onEnter={onEnter}
         />
         <Button variant="primary" onClick={submitText} disabled={!inputText.length}>
           <FontAwesomeIcon icon={faPaperPlane} size="lg" className="fa-fw" />
