@@ -12,6 +12,8 @@ export type ChatProps = {
   onMessageCreate: (roomId: string, content: string, isDummy: boolean) => void,
   activeRoom: string | null,
   onRoomChange: (roomId: string) => void,
+  canLoadMessages: (roomId: string) => boolean,
+  loadMessages: (roomId: string) => Promise<void>,
   getContactAvatar: (contactId: string) => string,
   getContactName: (contactId: string) => string,
   isContactOnline: (contactId: string) => boolean,

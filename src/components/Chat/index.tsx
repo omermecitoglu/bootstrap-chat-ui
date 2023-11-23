@@ -77,7 +77,7 @@ const Chat = ({
             />
           </div>
         </Col>
-        <Col ref={mainSection} className="h-100 position-relative">
+        <Col ref={mainSection} md={7} lg={8} xxl={9} className="h-100 position-relative">
           {activeRoom && mainSection.current &&
             <DropZone
               container={mainSection.current}
