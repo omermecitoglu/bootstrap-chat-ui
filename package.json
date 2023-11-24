@@ -1,10 +1,24 @@
 {
-  "private": true,
-  "name": "bootstrap-chat-ui",
+  "name": "@omer-x/bootstrap-chat-ui",
   "version": "1.0.0",
-  "description": "a Chat UI made with Bootstrap 5 and Font Awesome 6",
   "main": "dist/index.js",
   "types": "index.d.ts",
+  "description": "a Chat UI made with Bootstrap 5 and Font Awesome 6",
+  "author": "Omer Mecitoglu",
+  "license": "MIT",
+  "keywords": [
+    "bootstrap",
+    "font-awesome",
+    "chat"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/omermecitoglu/bootstrap-chat-ui.git"
+  },
+  "bugs": {
+    "url": "https://github.com/omermecitoglu/bootstrap-chat-ui/issues"
+  },
+  "homepage": "https://omermecitoglu.github.io/bootstrap-chat-ui",
   "scripts": {
     "prebuild": "ts-unused-exports tsconfig.json --excludePathsFromReport='.storybook;.stories.ts;example.ts'",
     "dev": "storybook dev -p 6006",
