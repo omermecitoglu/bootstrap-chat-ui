@@ -10,8 +10,7 @@ module.exports = (env, argv) => ({
     filename: "index.js",
     path: path.resolve(__dirname, "dist"),
     library: {
-      name: "BootstrapChatUI",
-      type: "umd"
+      type: "commonjs2"
     },
   },
   target: "web",

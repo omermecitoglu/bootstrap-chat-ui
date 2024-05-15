@@ -1,8 +1,6 @@
 {
   "name": "@omer-x/bootstrap-chat-ui",
-  "version": "1.0.0",
-  "main": "dist/index.js",
-  "types": "index.d.ts",
+  "version": "1.0.1",
   "description": "a Chat UI made with Bootstrap 5 and Font Awesome 6",
   "author": "Omer Mecitoglu",
   "license": "MIT",
@@ -22,10 +20,17 @@
   "publishConfig": {
     "access": "public"
   },
+  "main": "dist/index.js",
+  "types": "index.d.ts",
+  "files": [
+    "dist/",
+    "index.d.ts"
+  ],
   "scripts": {
     "prebuild": "ts-unused-exports tsconfig.json --excludePathsFromReport='.storybook;.stories.ts;example.ts'",
-    "dev": "storybook dev -p 6006",
+    "storybook": "storybook dev -p 6006",
     "build:docs": "storybook build -o docs",
+    "dev": "webpack --progress --mode=development --watch",
     "build": "webpack --progress --mode=production"
   },
   "dependencies": {
