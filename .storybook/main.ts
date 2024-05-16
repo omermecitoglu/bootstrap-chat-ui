@@ -3,6 +3,7 @@ import type { StorybookConfig } from "@storybook/react-webpack5";
 
 const config: StorybookConfig = {
   stories: ["../src/**/*.mdx", "../src/**/*.stories.@(js|jsx|mjs|ts|tsx)"],
+
   addons: [
     "@storybook/addon-links",
     "@storybook/addon-essentials",
@@ -11,6 +12,7 @@ const config: StorybookConfig = {
     "@storybook/addon-styling-webpack",
     ({
       name: "@storybook/addon-styling-webpack",
+
       options: {
         rules: [{
           test: /\.css$/,
@@ -49,11 +51,15 @@ const config: StorybookConfig = {
         }],
       },
     }),
+    "@storybook/addon-webpack5-compiler-babel",
+    "@chromatic-com/storybook",
   ],
+
   framework: {
     name: "@storybook/react-webpack5",
     options: {},
   },
+
   webpackFinal: async (conf) => {
     return {
       ...conf,
@@ -65,10 +71,14 @@ const config: StorybookConfig = {
       },
     };
   },
-  docs: {
-    autodocs: "tag",
-  },
+
+  docs: {},
+
   staticDirs: ["../public"],
+
+  typescript: {
+    reactDocgen: "react-docgen-typescript",
+  },
 };
 
 export default config;
